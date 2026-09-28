@@ -13,15 +13,21 @@ export default class Player {
     this.rescuePoint = INITIAL_RESCUE_POINT;
   }
   takeDamage(damageAmount) {
-    this.heart = Math.max(0, this.heart - damageAmount);
+    this.heart = Math.max(0, this.heart - damageAmount); //최솟값 0
   }
   heal(healingAmount) {
     this.heart += healingAmount;
   }
   eatFood(foodAmount) {
-    this.food = Math.max(0, this.food - foodAmount);
+    this.food = Math.max(0, this.food - foodAmount); //최솟값 0
   }
   addFood(foodAmount) {
     this.food += foodAmount;
+  }
+  decreaseInfectionRate(infectionRateAmount) {
+    this.infectionRate = Math.max(0, this.infectionRate - infectionRateAmount); //최솟값 0
+  }
+  increaseInfectionRate(infectionRateAmount) {
+    this.infectionRate += infectionRateAmount;
   }
 }
