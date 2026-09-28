@@ -36,4 +36,13 @@ export default class Player {
   addRescuePoint() {
     this.rescuePoint += 1;
   }
+  getState() {
+    return {
+      heart: this.heart,
+      food: this.food,
+      infectionRate: this.infectionRate,
+      healingCount: this.healingCount,
+      rescuePoint: this.rescuePoint,
+    };
+  }
 }
