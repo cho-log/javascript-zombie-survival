@@ -15,4 +15,7 @@ export default class Player {
   takeDamage(damageAmount) {
     this.heart = Math.max(0, this.heart - damageAmount);
   }
+  heal(healingAmount) {
+    this.heart += healingAmount;
+  }
 }
