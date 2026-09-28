@@ -18,4 +18,10 @@ export default class Player {
   heal(healingAmount) {
     this.heart += healingAmount;
   }
+  eatFood(foodAmount) {
+    this.food = Math.max(0, this.food - foodAmount);
+  }
+  addFood(foodAmount) {
+    this.food += foodAmount;
+  }
 }
