@@ -14,8 +14,8 @@ export default class Game {
   }
   selectChoice(choice) {
     if (choice === 'A')
-      return this.nowCard.selectA; //A 선택시
-    else return this.nowCard.selectB; //B 선택시
+      return this.nowCard.choiceA; //A 선택시
+    else return this.nowCard.choiceB; //B 선택시
   }
   applyEffect(effect) {
     //값이 없으면 0 입력
@@ -36,5 +36,11 @@ export default class Game {
   applyInfectionRateEffect(infectionRateChange) {
     if (0 < infectionRateChange) this.player.increaseInfectionRate(infectionRateChange);
     else if (infectionRateChange < 0) this.player.decreaseInfectionRate(-infectionRateChange);
+  }
+  processDay() {
+    day += 1;
+
+    this.player.eatFood(1); //식량 1이 소비된다
+    this.player.increaseInfectionRate(3); //감염도가 3 증가한다
   }
 }
