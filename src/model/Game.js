@@ -7,6 +7,7 @@ export default class Game {
     this.player = new Player();
     this.day = 1; //경과된 일자
     this.nowCard = null; //현재 뽑은 카드
+    this.hasGivenUp = false; //포기여부
   }
   drawCard() {
     this.nowCard = this.cardDeck.drawCard(); //뽑은 카드 저장
@@ -46,7 +47,11 @@ export default class Game {
     this.nowCard = null; //카드 비우기
     this.day += 1; //날짜 증가
   }
+  setGiveUp() {
+    this.hasGivenUp = true;
+  }
   getEnding() {
+    if (this.hasGivenUp) return 'hasGivenUp';
     const playerState = this.player.getState();
     if (playerState.heart <= 0) return 'dead'; //사망
     if (100 <= playerState.infectionRate) return 'zombie'; //좀비화
@@ -54,5 +59,15 @@ export default class Game {
     if (3 <= playerState.rescuePoint && 10 < this.day) return 'rescue'; //구조포인트3회 + 10일초과
     if (15 < this.day) return 'survive'; //15일초과
     return null;
+  }
+  getResult() {
+    const playerState = this.player.getState();
+    return {
+      day: this.day - 1,
+      heart: playerState.heart,
+      food: playerState.food,
+      infectionRate: playerState.infectionRate,
+      ending: this.getEnding(),
+    };
   }
 }
