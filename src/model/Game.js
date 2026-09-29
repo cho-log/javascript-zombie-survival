@@ -44,6 +44,7 @@ export default class Game {
     this.player.eatFood(1); //식량 1이 소비된다
     this.player.increaseInfectionRate(3); //감염도가 3 증가한다
     if (isStarving) this.player.takeDamage(10); //2번에서 식량이 0이었다면, 체력이 10 추가 감소한다
+
     this.nowCard = null; //카드 비우기
     this.day += 1; //날짜 증가
   }
@@ -51,8 +52,9 @@ export default class Game {
     this.hasGivenUp = true;
   }
   getEnding() {
-    if (this.hasGivenUp) return 'hasGivenUp';
     const playerState = this.player.getState();
+
+    if (this.hasGivenUp) return 'hasGivenUp'; //포기
     if (playerState.heart <= 0) return 'dead'; //사망
     if (100 <= playerState.infectionRate) return 'zombie'; //좀비화
     if (5 <= playerState.healingCount) return 'treatment'; //치료5회
@@ -62,6 +64,7 @@ export default class Game {
   }
   getResult() {
     const playerState = this.player.getState();
+
     return {
       day: this.day - 1,
       heart: playerState.heart,
