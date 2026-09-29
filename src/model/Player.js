@@ -30,11 +30,11 @@ export default class Player {
   increaseInfectionRate(infectionRateAmount) {
     this.infectionRate += infectionRateAmount;
   }
-  addHealingCount() {
-    this.healingCount += 1;
+  addHealingCount(healingCount) {
+    this.healingCount += healingCount;
   }
-  addRescuePoint() {
-    this.rescuePoint += 1;
+  addRescuePoint(rescuePoint) {
+    this.rescuePoint += rescuePoint;
   }
   getState() {
     return {
