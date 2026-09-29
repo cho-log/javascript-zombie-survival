@@ -34,6 +34,6 @@ export default class CardDeck {
     return this.cardDeck.pop(); //덱의 마지막 카드를 빼고 반환
   }
   getRemainingCardCount() {
-    return this.cardDeck.length;
+    return this.cardDeck.length; //현재 덱에 남은 카드 수는 화면에 실시간으로 표시된다.
   }
 }
