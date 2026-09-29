@@ -62,7 +62,22 @@ export default class Game {
     if (15 < this.day) return 'survive'; //15일초과
     return null;
   }
+  getState() {
+    //화면렌더용
+    const playerState = this.player.getState();
+
+    return {
+      day: this.day,
+      heart: playerState.heart,
+      food: playerState.food,
+      infectionRate: playerState.infectionRate,
+      healingCount: playerState.healingCount,
+      rescuePoint: playerState.rescuePoint,
+      remainingCardCount: this.cardDeck.getRemainingCardCount(),
+    };
+  }
   getResult() {
+    //결과화면용
     const playerState = this.player.getState();
 
     return {

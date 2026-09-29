@@ -30,4 +30,14 @@ export default class GameView {
     this.giveUpButton = document.getElementById('btn-giveup');
     this.restartButton = document.getElementById('btn-restart');
   }
+  renderGameScreen(gameState) {
+    //게임 진행 화면
+    this.dayElement.textContent = gameState.day;
+    this.heartElement.textContent = gameState.heart;
+    this.foodElement.textContent = gameState.food;
+    this.infectionRateElement.textContent = gameState.infectionRate;
+    this.healingCountElement.textContent = gameState.healingCount;
+    this.rescuePointElement.textContent = gameState.rescuePoint;
+    this.remainingCardCountElement.textContent = gameState.remainingCardCount;
+  }
 }
