@@ -33,4 +33,7 @@ export default class CardDeck {
     }
     return this.cardDeck.pop(); //덱의 마지막 카드를 빼고 반환
   }
+  getRemainingCardCount() {
+    return this.cardDeck.length;
+  }
 }
