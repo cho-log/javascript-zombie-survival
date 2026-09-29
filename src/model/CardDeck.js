@@ -19,9 +19,18 @@ export default class CardDeck {
     });
   }
   shuffle() {
+    //20장의 카드로 구성된 덱을 셔플하여 사용한다.
     for (let i = 0; i < this.cardDeck.length; i += 1) {
       const j = i + Math.floor(Math.random() * (this.cardDeck.length - i));
       [this.cardDeck[i], this.cardDeck[j]] = [this.cardDeck[j], this.cardDeck[i]];
     }
+  }
+  drawCard() {
+    if (this.cardDeck.length === 0) {
+      //덱이 소진되면 자동으로 리셔플된다.
+      this.createCardDeck();
+      this.shuffle();
+    }
+    return this.cardDeck.pop(); //덱의 마지막 카드를 빼고 반환
   }
 }
