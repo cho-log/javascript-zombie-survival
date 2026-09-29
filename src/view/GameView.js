@@ -25,6 +25,7 @@ export default class GameView {
     this.resultEndingElement = document.getElementById('result-ending');
   }
   initializeButtonElements() {
+    this.drawButton = document.getElementById('btn-draw');
     this.choiceAButton = document.getElementById('btn-choice-a');
     this.choiceBButton = document.getElementById('btn-choice-b');
     this.giveUpButton = document.getElementById('btn-giveup');
