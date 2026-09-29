@@ -4,10 +4,12 @@ export default class GameView {
     this.initializeStatElements();
     this.initializeStatusElements();
     this.initializeButtonElements();
+    this.initializeCardElements();
   }
   initializeScreenElements() {
     this.gameScreen = document.getElementById('game-screen');
     this.drawArea = document.getElementById('draw-area');
+    this.cardArea = document.getElementById('card-area');
     this.resultScreen = document.getElementById('result-screen');
   }
   initializeStatElements() {
@@ -30,6 +32,14 @@ export default class GameView {
     this.choiceBButton = document.getElementById('btn-choice-b');
     this.giveUpButton = document.getElementById('btn-giveup');
     this.restartButton = document.getElementById('btn-restart');
+  }
+  initializeCardElements() {
+    this.cardNameElement = document.getElementById('card-name');
+    this.cardDescriptionElement = document.getElementById('card-description');
+    this.choiceALabelElement = this.choiceAButton.querySelector('.choice-label');
+    this.choiceADescriptionElement = this.choiceAButton.querySelector('.choice-desc');
+    this.choiceBLabelElement = this.choiceBButton.querySelector('.choice-label');
+    this.choiceBDescriptionElement = this.choiceBButton.querySelector('.choice-desc');
   }
   renderGameScreen(gameState) {
     //게임 진행 화면
