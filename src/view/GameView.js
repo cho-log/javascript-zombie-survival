@@ -51,4 +51,5 @@ export default class GameView {
     this.rescuePointElement.textContent = gameStats.rescuePoint;
     this.remainingCardCountElement.textContent = gameStats.remainingCardCount;
   }
+  renderCard() {}
 }
