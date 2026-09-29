@@ -9,12 +9,19 @@ const CARDS = [
 
 export default class CardDeck {
   constructor() {
-    this.cardDeck = [];
     this.createCardDeck();
+    this.shuffle();
   }
   createCardDeck() {
+    this.cardDeck = []; //createCardDeck이 여러번 호출되도, 덱에 카드수가 초과하지않음
     CARDS.forEach((card) => {
       for (let i = 0; i < card.count; i++) this.cardDeck.push(card);
     });
+  }
+  shuffle() {
+    for (let i = 0; i < this.cardDeck.length; i += 1) {
+      const j = i + Math.floor(Math.random() * (this.cardDeck.length - i));
+      [this.cardDeck[i], this.cardDeck[j]] = [this.cardDeck[j], this.cardDeck[i]];
+    }
   }
 }
