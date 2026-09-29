@@ -41,14 +41,14 @@ export default class GameView {
     this.choiceBLabelElement = this.choiceBButton.querySelector('.choice-label');
     this.choiceBDescriptionElement = this.choiceBButton.querySelector('.choice-desc');
   }
-  renderGameScreen(gameState) {
-    //게임 진행 화면
-    this.dayElement.textContent = gameState.day;
-    this.heartElement.textContent = gameState.heart;
-    this.foodElement.textContent = gameState.food;
-    this.infectionRateElement.textContent = gameState.infectionRate;
-    this.healingCountElement.textContent = gameState.healingCount;
-    this.rescuePointElement.textContent = gameState.rescuePoint;
-    this.remainingCardCountElement.textContent = gameState.remainingCardCount;
+  renderStats(gameStats) {
+    //게임 수치 표시
+    this.dayElement.textContent = gameStats.day;
+    this.heartElement.textContent = gameStats.heart;
+    this.foodElement.textContent = gameStats.food;
+    this.infectionRateElement.textContent = gameStats.infectionRate;
+    this.healingCountElement.textContent = gameStats.healingCount;
+    this.rescuePointElement.textContent = gameStats.rescuePoint;
+    this.remainingCardCountElement.textContent = gameStats.remainingCardCount;
   }
 }
