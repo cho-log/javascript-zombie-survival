@@ -9,7 +9,7 @@ export default class Game {
     this.nowCard = null; //현재 뽑은 카드
   }
   drawCard() {
-    this.nowCard = this.cardDeck.drawCard();
+    this.nowCard = this.cardDeck.drawCard(); //뽑은 카드 저장
     return this.nowCard;
   }
   selectChoice(choice) {
@@ -37,10 +37,22 @@ export default class Game {
     if (0 < infectionRateChange) this.player.increaseInfectionRate(infectionRateChange);
     else if (infectionRateChange < 0) this.player.decreaseInfectionRate(-infectionRateChange);
   }
-  processDay() {
-    day += 1;
-
+  processDay(choice) {
+    this.applyEffect(this.selectChoice(choice).effect); //카드 효과가 적용된다
+    const isStarving = this.player.getState().food === 0; //현재 식량이 0인지 확인한다 (기아 판정)
     this.player.eatFood(1); //식량 1이 소비된다
     this.player.increaseInfectionRate(3); //감염도가 3 증가한다
+    if (isStarving) this.player.takeDamage(10); //2번에서 식량이 0이었다면, 체력이 10 추가 감소한다
+    this.nowCard = null; //카드 비우기
+    this.day += 1; //날짜 증가
+  }
+  getEnding() {
+    const playerState = this.player.getState();
+    if (playerState.heart <= 0) return 'dead'; //사망
+    if (100 <= playerState.infectionRate) return 'zombie'; //좀비화
+    if (5 <= playerState.healingCount) return 'treatment'; //치료5회
+    if (3 <= playerState.rescuePoint && 10 < this.day) return 'rescue'; //구조포인트3회 + 10일초과
+    if (15 < this.day) return 'survive'; //15일초과
+    return null;
   }
 }
