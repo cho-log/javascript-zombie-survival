@@ -12,4 +12,9 @@ export default class Game {
     this.nowCard = this.cardDeck.drawCard();
     return this.nowCard;
   }
+  selectChoice(choice) {
+    if (choice === 'A')
+      return this.nowCard.selectA; //A 선택시
+    else return this.nowCard.selectB; //B 선택시
+  }
 }
