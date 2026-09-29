@@ -51,5 +51,13 @@ export default class GameView {
     this.rescuePointElement.textContent = gameStats.rescuePoint;
     this.remainingCardCountElement.textContent = gameStats.remainingCardCount;
   }
-  renderCard() {}
+  renderCard(card) {
+    //카드 정보 표시
+    this.cardNameElement.textContent = card.name;
+    this.cardDescriptionElement.textContent = card.description;
+    this.choiceALabelElement.textContent = card.choiceA.label;
+    this.choiceADescriptionElement.textContent = card.choiceA.description;
+    this.choiceBLabelElement.textContent = card.choiceB.label;
+    this.choiceBDescriptionElement.textContent = card.choiceB.description;
+  }
 }
