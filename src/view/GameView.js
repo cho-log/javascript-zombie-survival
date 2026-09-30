@@ -14,6 +14,7 @@ export default class GameView {
     this.initializeStatusElements();
     this.initializeButtonElements();
     this.initializeCardElements();
+    this.initializeResultElements();
   }
   initializeScreenElements() {
     this.gameScreen = document.getElementById('game-screen');
@@ -33,7 +34,6 @@ export default class GameView {
     this.remainingCardCountElement = document.getElementById('deck-remaining');
     this.loadingElement = document.getElementById('loading');
     this.logElement = document.getElementById('log');
-    this.resultEndingElement = document.getElementById('result-ending');
   }
   initializeButtonElements() {
     this.drawButton = document.getElementById('btn-draw');
@@ -49,6 +49,13 @@ export default class GameView {
     this.choiceADescriptionElement = this.choiceAButton.querySelector('.choice-desc');
     this.choiceBLabelElement = this.choiceBButton.querySelector('.choice-label');
     this.choiceBDescriptionElement = this.choiceBButton.querySelector('.choice-desc');
+  }
+  initializeResultElements() {
+    this.resultEndingElement = document.getElementById('result-ending');
+    this.resultDaysElement = document.getElementById('result-days');
+    this.resultHeartElement = document.getElementById('result-hp');
+    this.resultFoodElement = document.getElementById('result-food');
+    this.resultInfectionRateElement = document.getElementById('result-infection');
   }
   renderStats(gameStats) {
     //게임 수치 표시
@@ -88,5 +95,8 @@ export default class GameView {
   }
   clearLog() {
     this.logElement.textContent = '';
+  }
+  setEnding(ending) {
+    this.resultEndingElement.textContent = ENDING_MESSAGE[ending];
   }
 }
