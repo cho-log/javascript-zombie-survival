@@ -106,19 +106,19 @@ export default class GameView {
   }
 
   setLoading(isLoading) {
-    this.displayScreen(this.loadingElement, isLoading);
+    this.displayScreen(this.loadingElement, isLoading); //로딩화면
 
-    this.choiceAButton.disabled = isLoading;
+    this.choiceAButton.disabled = isLoading; //선택버튼 활성,비활성
     this.choiceBButton.disabled = isLoading;
   }
   addLog(message) {
     const logMessage = document.createElement('p');
 
     logMessage.append(message);
-    this.logElement.append(logMessage);
+    this.logElement.append(logMessage); //로그 메세지 추가
   }
   clearLog() {
-    this.logElement.textContent = '';
+    this.logElement.textContent = ''; //로그 메세지 초기화
   }
 
   renderResult(result) {
@@ -134,6 +134,7 @@ export default class GameView {
   }
 
   resetScreen() {
+    //화면 초기화
     this.displayScreen(this.resultScreen, false);
     this.displayScreen(this.gameScreen, true);
     this.displayScreen(this.drawArea, true);

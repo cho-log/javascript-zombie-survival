@@ -98,6 +98,7 @@ export default class Game {
   }
 
   resetGame() {
+    //게임 초기화
     this.cardDeck = new CardDeck();
     this.player = new Player();
     this.day = 1; //경과된 일자
