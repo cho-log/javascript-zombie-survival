@@ -61,15 +61,15 @@ export default class GameView {
   bindDraw(handler) {
     this.drawButton.addEventListener('click', handler);
   }
+  bindChoice(handler) {
+    this.choiceAButton.addEventListener('click', () => handler('A')); //이벤트 등록 순간 실행 방지
+    this.choiceBButton.addEventListener('click', () => handler('B'));
+  }
   bindGiveUp(handler) {
     this.giveUpButton.addEventListener('click', handler);
   }
   bindRestart(handler) {
     this.restartButton.addEventListener('click', handler);
-  }
-  bindChoice(handler) {
-    this.choiceAButton.addEventListener('click', () => handler('A')); //이벤트 등록 순간 실행 방지
-    this.choiceBButton.addEventListener('click', () => handler('B'));
   }
 
   renderStats(gameStats) {
