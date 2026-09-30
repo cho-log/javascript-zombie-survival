@@ -57,6 +57,21 @@ export default class GameView {
     this.resultFoodElement = document.getElementById('result-food');
     this.resultInfectionRateElement = document.getElementById('result-infection');
   }
+  //버튼 바인더
+  bindDraw(handler) {
+    this.drawButton.addEventListener('click', handler);
+  }
+  bindGiveUp(handler) {
+    this.giveUpButton.addEventListener('click', handler);
+  }
+  bindRestart(handler) {
+    this.restartButton.addEventListener('click', handler);
+  }
+  bindChoice(handler) {
+    this.choiceAButton.addEventListener('click', () => handler('A')); //이벤트 등록 순간 실행 방지
+    this.choiceBButton.addEventListener('click', () => handler('B'));
+  }
+
   renderStats(gameStats) {
     //게임 수치 표시
     this.dayElement.textContent = gameStats.day;
@@ -67,6 +82,7 @@ export default class GameView {
     this.rescuePointElement.textContent = gameStats.rescuePoint;
     this.remainingCardCountElement.textContent = gameStats.remainingCardCount;
   }
+
   renderCard(card) {
     //카드 정보 표시
     this.cardNameElement.textContent = card.name;
@@ -76,6 +92,7 @@ export default class GameView {
     this.choiceBLabelElement.textContent = card.choiceB.label;
     this.choiceBDescriptionElement.textContent = card.choiceB.description;
   }
+
   displayScreen(screen, isDisplay) {
     if (isDisplay) {
       screen.classList.remove('hidden'); //"class로 조작"
@@ -83,6 +100,7 @@ export default class GameView {
       screen.classList.add('hidden');
     }
   }
+
   setLoading(isLoading) {
     this.displayScreen(this.loadingElement, isLoading);
 
@@ -98,6 +116,7 @@ export default class GameView {
   clearLog() {
     this.logElement.textContent = '';
   }
+
   renderResult(result) {
     //결과 화면 표시
     this.resultEndingElement.textContent = ENDING_MESSAGE[result.ending];
@@ -109,6 +128,7 @@ export default class GameView {
     this.displayScreen(this.gameScreen, false);
     this.displayScreen(this.resultScreen, true);
   }
+
   resetScreen() {
     this.displayScreen(this.resultScreen, false);
     this.displayScreen(this.gameScreen, true);
