@@ -37,12 +37,15 @@ export default class GameController {
     this.gameView.setLoading(false);
     this.gameView.renderStats(this.game.getState()); //선택 결과 업데이트
 
-    if (this.game.getResult() !== null) {
-      this.gameView.renderResult(this.game.getResult()); //엔딩
+    if (this.game.getEnding() !== null) {
+      this.gameView.renderResult(this.game.getResult()); //게임 종료
       return;
-    }
+    } //게임 진행
     this.gameView.displayDrawScreen(true); //카트 영역 감추기
   }
-  handleGiveUp() {}
+  handleGiveUp() {
+    this.game.setGiveUp();
+    this.gameView.renderResult(this.game.getResult()); //게임 종료
+  }
   handleRestart() {}
 }

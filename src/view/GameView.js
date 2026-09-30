@@ -100,6 +100,10 @@ export default class GameView {
       screen.classList.add('hidden');
     }
   }
+  displayDrawScreen(isDisplay) {
+    this.displayScreen(this.drawArea, isDisplay);
+    this.displayScreen(this.cardArea, !isDisplay);
+  }
 
   setLoading(isLoading) {
     this.displayScreen(this.loadingElement, isLoading);
