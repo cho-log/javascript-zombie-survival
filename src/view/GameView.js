@@ -1,3 +1,12 @@
+const ENDING_MESSAGE = {
+  hasGivenUp: '포기',
+  dead: '사망',
+  zombie: '좀비화',
+  treatment: '치료 성공',
+  rescue: '구조 성공',
+  survive: '생존 성공',
+};
+
 export default class GameView {
   constructor() {
     this.initializeScreenElements();
