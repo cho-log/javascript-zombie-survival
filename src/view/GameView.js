@@ -72,4 +72,9 @@ export default class GameView {
     this.choiceAButton.disabled = isLoading;
     this.choiceBButton.disabled = isLoading;
   }
+  addLog(message) {
+    const logMessage = document.createElement('p');
+    logMessage.append(message);
+    this.logElement.append(logMessage);
+  }
 }
