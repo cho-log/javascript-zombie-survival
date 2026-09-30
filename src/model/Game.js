@@ -1,6 +1,10 @@
 import CardDeck from './CardDeck.js';
 import Player from './Player.js';
 
+const DAYLY_FOOD_CONSUMPTION = 1;
+const DAYLY_INFECTION_INCREASE = 3;
+const DAMAGE_WHEN_STARVING = 10;
+
 export default class Game {
   constructor() {
     this.cardDeck = new CardDeck();
@@ -43,9 +47,9 @@ export default class Game {
   processDay(choice) {
     this.applyEffect(this.selectChoice(choice).effect); //카드 효과가 적용된다
     this.isStarving = this.player.getState().food === 0; //현재 식량이 0인지 확인한다 (기아 판정)
-    this.player.eatFood(1); //식량 1이 소비된다
-    this.player.increaseInfectionRate(3); //감염도가 3 증가한다
-    if (this.isStarving) this.player.takeDamage(10); //2번에서 식량이 0이었다면, 체력이 10 추가 감소한다
+    this.player.eatFood(DAYLY_FOOD_CONSUMPTION); //식량 1이 소비된다
+    this.player.increaseInfectionRate(DAYLY_INFECTION_INCREASE); //감염도가 3 증가한다
+    if (this.isStarving) this.player.takeDamage(DAMAGE_WHEN_STARVING); //2번에서 식량이 0이었다면, 체력이 10 추가 감소한다
 
     this.nowCard = null; //카드 비우기
     this.day += 1; //날짜 증가
