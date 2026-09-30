@@ -67,4 +67,9 @@ export default class GameView {
       screen.classList.add('hidden');
     }
   }
+  setLoading(isLoading) {
+    this.displayScreen(this.loadingElement, isLoading);
+    this.choiceAButton.disabled = isLoading;
+    this.choiceBButton.disabled = isLoading;
+  }
 }
