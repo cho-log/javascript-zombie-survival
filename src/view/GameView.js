@@ -109,4 +109,12 @@ export default class GameView {
     this.displayScreen(this.gameScreen, false);
     this.displayScreen(this.resultScreen, true);
   }
+  resetScreen() {
+    this.displayScreen(this.resultScreen, false);
+    this.displayScreen(this.gameScreen, true);
+    this.displayScreen(this.drawArea, true);
+    this.displayScreen(this.cardArea, false);
+    this.setLoading(false);
+    this.clearLog();
+  }
 }
