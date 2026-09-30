@@ -47,5 +47,8 @@ export default class GameController {
     this.game.setGiveUp();
     this.gameView.renderResult(this.game.getResult()); //게임 종료
   }
-  handleRestart() {}
+  handleRestart() {
+    this.gameView.resetScreen();
+    this.gameView.clearLog();
+  }
 }
