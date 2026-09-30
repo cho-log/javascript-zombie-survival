@@ -12,6 +12,7 @@ export default class GameController {
     this.gameView.bindRestart(() => this.handleRestart());
   }
   startGame() {
+    this.game.resetGame(); //게임 초기화
     this.gameView.resetScreen(); //화면 초기화
     this.gameView.renderStats(this.game.getState()); //스텟 보이기
     this.gameView.addLog('생존 시작'); //게임 시작 시
@@ -50,5 +51,6 @@ export default class GameController {
   handleRestart() {
     this.gameView.resetScreen();
     this.gameView.clearLog();
+    this.startGame();
   }
 }
