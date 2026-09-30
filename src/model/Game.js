@@ -96,4 +96,13 @@ export default class Game {
       ending: this.getEnding(),
     };
   }
+
+  resetGame() {
+    this.cardDeck = new CardDeck();
+    this.player = new Player();
+    this.day = 1; //경과된 일자
+    this.nowCard = null; //현재 뽑은 카드
+    this.hasGivenUp = false; //포기여부
+    this.isStarving = false; //기아여부
+  }
 }
