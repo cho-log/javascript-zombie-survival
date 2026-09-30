@@ -60,4 +60,11 @@ export default class GameView {
     this.choiceBLabelElement.textContent = card.choiceB.label;
     this.choiceBDescriptionElement.textContent = card.choiceB.description;
   }
+  displayScreen(screen, isDisplay) {
+    if (isDisplay) {
+      screen.classList.remove('hidden'); //"class로 조작"
+    } else {
+      screen.classList.add('hidden');
+    }
+  }
 }
