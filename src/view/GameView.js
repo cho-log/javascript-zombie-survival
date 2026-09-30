@@ -77,4 +77,7 @@ export default class GameView {
     logMessage.append(message);
     this.logElement.append(logMessage);
   }
+  clearLog() {
+    this.logElement.textContent = '';
+  }
 }
