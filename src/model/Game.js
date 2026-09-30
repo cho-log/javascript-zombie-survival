@@ -8,6 +8,7 @@ export default class Game {
     this.day = 1; //경과된 일자
     this.nowCard = null; //현재 뽑은 카드
     this.hasGivenUp = false; //포기여부
+    this.isStarving = false; //기아여부
   }
   drawCard() {
     this.nowCard = this.cardDeck.drawCard(); //뽑은 카드 저장
@@ -38,19 +39,26 @@ export default class Game {
     if (0 < infectionRateChange) this.player.increaseInfectionRate(infectionRateChange);
     else if (infectionRateChange < 0) this.player.decreaseInfectionRate(-infectionRateChange);
   }
+
   processDay(choice) {
     this.applyEffect(this.selectChoice(choice).effect); //카드 효과가 적용된다
-    const isStarving = this.player.getState().food === 0; //현재 식량이 0인지 확인한다 (기아 판정)
+    this.isStarving = this.player.getState().food === 0; //현재 식량이 0인지 확인한다 (기아 판정)
     this.player.eatFood(1); //식량 1이 소비된다
     this.player.increaseInfectionRate(3); //감염도가 3 증가한다
-    if (isStarving) this.player.takeDamage(10); //2번에서 식량이 0이었다면, 체력이 10 추가 감소한다
+    if (this.isStarving) this.player.takeDamage(10); //2번에서 식량이 0이었다면, 체력이 10 추가 감소한다
 
     this.nowCard = null; //카드 비우기
     this.day += 1; //날짜 증가
   }
+
   setGiveUp() {
     this.hasGivenUp = true;
   }
+
+  getIsStarving() {
+    return this.isStarving;
+  }
+
   getEnding() {
     const playerState = this.player.getState();
 
