@@ -85,18 +85,28 @@ export default class GameView {
   }
   setLoading(isLoading) {
     this.displayScreen(this.loadingElement, isLoading);
+
     this.choiceAButton.disabled = isLoading;
     this.choiceBButton.disabled = isLoading;
   }
   addLog(message) {
     const logMessage = document.createElement('p');
+
     logMessage.append(message);
     this.logElement.append(logMessage);
   }
   clearLog() {
     this.logElement.textContent = '';
   }
-  setEnding(ending) {
-    this.resultEndingElement.textContent = ENDING_MESSAGE[ending];
+  renderResult(result) {
+    //결과 화면 표시
+    this.resultEndingElement.textContent = ENDING_MESSAGE[result.ending];
+    this.resultDaysElement.textContent = result.day;
+    this.resultHeartElement.textContent = result.heart;
+    this.resultFoodElement.textContent = result.food;
+    this.resultInfectionRateElement.textContent = result.infectionRate;
+
+    this.displayScreen(this.gameScreen, false);
+    this.displayScreen(this.resultScreen, true);
   }
 }
