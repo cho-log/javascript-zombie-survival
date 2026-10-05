@@ -22,24 +22,11 @@ export default class GameViewModel {
         };
     }
 
-    selectAChoice() {
-        this.player.applyEffect(this.card.choice[0].effect);
+    selectChoice(index) {
+        this.player.applyEffect(this.card.choice[index].effect);
         this.starvation=this.player.dayEffect();
-        const gameState = this.endGame();
+        const gameState=this.endGame();
 
-        return {
-            gameStatus: gameState.gameStatus,
-            result:gameState.result,
-            playerState: this.player.getPlayerState(),
-            starvation:this.starvation
-        };
-    }
-
-    selectBChoice() {
-        this.player.applyEffect(this.card.choice[1].effect);
-        this.starvation=this.player.dayEffect();
-        const gameState = this.endGame();
-        
         return {
             gameStatus: gameState.gameStatus,
             result:gameState.result,

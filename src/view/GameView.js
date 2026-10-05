@@ -52,79 +52,61 @@ export default class GameView {
 
             this.bChoiceButton.querySelector(".choice-label").textContent = card.bDescription;
             this.bChoiceButton.querySelector(".choice-desc").textContent = card.bEffectDescription;
-            this.addLog("카드를 뽑았습니다.");
+            this.addGeneralLog("카드를 뽑았습니다.");
         });
     }
 
     bindAChoiceButton() {
-        this.aChoiceButton.addEventListener("click", () => {
-
-            const result = this.gameViewModel.selectAChoice();
-            this.aChoiceButton.disabled = true;
-            this.bChoiceButton.disabled = true;
-            this.loading.classList.remove("hidden");
-            this.cardArea.classList.add("hidden");
-
-            this.addLog(
-                this.cardName.textContent,
+        this.aChoiceButton.addEventListener("click",()=>{
+            this.handleChoice(
+                0,
                 "A",
-                this.aChoiceButton.querySelector(".choice-desc").textContent
+                this.aChoiceButton
             );
-
-            if (result.starvation) {
-                this.addLog("식량이 없어");
-            }
-
-            setTimeout(() => {
-                this.updatePlayerState(result.playerState);
-                this.loading.classList.add("hidden");
-                if (result.gameStatus) {
-                    this.drawButton.style.display = "";
-                    this.cardArea.classList.add("hidden");
-                    this.giveupButton.classList.remove("hidden");
-                    this.addLog("선택지 A를 골랐습니다.");
-                }
-                else {
-                    this.showGameOver(result.result);
-                }
-            }, 2000)
         });
     }
 
     bindBChoiceButton() {
-        this.bChoiceButton.addEventListener("click", () => {
-
-            const result = this.gameViewModel.selectBChoice();
-            this.aChoiceButton.disabled = true;
-            this.bChoiceButton.disabled = true;
-            this.loading.classList.remove("hidden");
-            this.cardArea.classList.add("hidden");
-
-            this.addLog(
-                this.cardName.textContent,
+        this.bChoiceButton.addEventListener("click",()=>{
+            this.handleChoice(
+                1,
                 "B",
-                this.aChoiceButton.querySelector(".choice-desc").textContent
+                this.bChoiceButton
             );
-
-
-            if (result.starvation) {
-                this.addLog("식량이 없어");
-            }
-
-            setTimeout(() => {
-                this.updatePlayerState(result.playerState);
-                this.loading.classList.add("hidden");
-                if (result.gameStatus) {
-                    this.drawButton.style.display = "";
-                    this.cardArea.classList.add("hidden");
-                    this.giveupButton.classList.remove("hidden");
-                    this.addLog("선택지 B를 골랐습니다.");
-                }
-                else {
-                    this.showGameOver(result.result);
-                }
-            }, 2000);
         });
+    }
+
+    handleChoice(index, choiceName, choiceButton) {
+        const result = this.gameViewModel.selectChoice(index);
+
+        this.aChoiceButton.disabled = true;
+        this.bChoiceButton.disabled = true;
+        this.loading.classList.remove("hidden");
+        this.cardArea.classList.add("hidden");
+
+        this.addLog(
+            this.cardName.textContent,
+            choiceName,
+            choiceButton.querySelector(".choice-desc").textContent
+        );
+
+        if (result.starvation) {
+            this.addGeneralLog("식량이 없어");
+        }
+
+        setTimeout(() => {
+            this.updatePlayerState(result.playerState);
+            this.loading.classList.add("hidden");
+            if (result.gameStatus) {
+                this.drawButton.style.display = "";
+                this.cardArea.classList.add("hidden");
+                this.giveupButton.classList.remove("hidden");
+                this.addGeneralLog(`선택지 ${choiceName}를 골랐습니다.`);
+            }
+            else {
+                this.showGameOver(result.result);
+            }
+        }, 2000);
     }
 
     bindGiveupButton() {
@@ -151,7 +133,7 @@ export default class GameView {
             this.updatePlayerState(this.gameViewModel.getPlayerState());
             this.deckRemaining.textContent = 20;
             this.log.innerHTML = "";
-            this.addLog("게임을 시작했습니다.");
+            this.addGeneralLog("게임을 시작했습니다.");
         });
     }
 
@@ -186,6 +168,12 @@ export default class GameView {
     addLog(cardName, choiceName, effectDescription) {
         const logItem = document.createElement("li");
         logItem.textContent = `${cardName} - 선택지 ${choiceName}: ${effectDescription}`;
+        this.log.appendChild(logItem);
+    }
+
+    addGeneralLog(message) {
+        const logItem = document.createElement("li");
+        logItem.textContent = message;
         this.log.appendChild(logItem);
     }
 }
