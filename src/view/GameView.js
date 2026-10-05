@@ -42,7 +42,7 @@ export default class GameView {
             this.bChoiceButton.disabled = false;
 
             const card = this.gameViewModel.drawCard();
-            this.updatePlayerState(this.gameViewModel.getPlayerState());
+            this.updatePlayerState(card.playerState);
 
             this.deckRemaining.textContent = card.cardCount;
             this.cardName.textContent = card.name;
@@ -111,13 +111,15 @@ export default class GameView {
 
     bindGiveupButton() {
         this.giveupButton.addEventListener("click", () => {
+            const playerState =this.gameViewModel.getPlayerState();
+            
             this.drawButton.style.display = "none";
             this.giveupButton.classList.add("hidden");
             this.resultScreen.classList.remove("hidden");
 
             this.logScreen.style.display = "none";
 
-            this.showGameOver("포기");
+            this.showGameOver("포기",playerState.day);
         });
     }
 
