@@ -97,7 +97,7 @@ export default class GameView {
         setTimeout(() => {
             this.updatePlayerState(result.playerState);
             this.loading.classList.add("hidden");
-            if (result.gameStatus) {
+            if (result.isPlaying) {
                 this.drawButton.style.display = "";
                 this.cardArea.classList.add("hidden");
                 this.giveupButton.classList.remove("hidden");
@@ -155,7 +155,7 @@ export default class GameView {
         this.giveupButton.classList.add("hidden");
         this.logScreen.style.display = "none";
 
-        const gameEnding = this.gameViewModel.endGame();
+        const gameEnding = this.gameViewModel.isendGame();
         this.resultEnding.textContent = gameEnding.result;
 
         const playerState = this.gameViewModel.getPlayerState();
