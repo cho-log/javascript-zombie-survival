@@ -25,6 +25,14 @@ export default class GameView {
         this.resultInfection = document.querySelector("#result-infection");
     }
     bindEvents() {
+        this.bindDrawButton();
+        this.bindAChoiceButton();
+        this.bindBChoiceButton();
+        this.bindGiveupButton();
+        this.bindRestartButton();
+    }
+
+    bindDrawButton() {
         this.drawButton.addEventListener("click", () => {
             this.giveupButton.classList.add("hidden");
             this.drawButton.style.display = "none";
@@ -46,7 +54,9 @@ export default class GameView {
             this.bChoiceButton.querySelector(".choice-desc").textContent = card.bEffectDescription;
             this.addLog("카드를 뽑았습니다.");
         });
+    }
 
+    bindAChoiceButton() {
         this.aChoiceButton.addEventListener("click", () => {
 
             const result = this.gameViewModel.selectAChoice();
@@ -57,7 +67,7 @@ export default class GameView {
 
             this.addLog(
                 this.cardName.textContent,
-                "B",
+                "A",
                 this.aChoiceButton.querySelector(".choice-desc").textContent
             );
 
@@ -79,7 +89,9 @@ export default class GameView {
                 }
             }, 2000)
         });
+    }
 
+    bindBChoiceButton() {
         this.bChoiceButton.addEventListener("click", () => {
 
             const result = this.gameViewModel.selectBChoice();
@@ -87,6 +99,12 @@ export default class GameView {
             this.bChoiceButton.disabled = true;
             this.loading.classList.remove("hidden");
             this.cardArea.classList.add("hidden");
+
+            this.addLog(
+                this.cardName.textContent,
+                "B",
+                this.aChoiceButton.querySelector(".choice-desc").textContent
+            );
 
 
             if (result.starvation) {
@@ -106,11 +124,10 @@ export default class GameView {
                     this.showGameOver(result.result);
                 }
             }, 2000);
-
-
-
         });
+    }
 
+    bindGiveupButton() {
         this.giveupButton.addEventListener("click", () => {
             this.drawButton.style.display = "none";
             this.giveupButton.classList.add("hidden");
@@ -120,7 +137,9 @@ export default class GameView {
 
             this.showGameOver("포기");
         });
+    }
 
+    bindRestartButton() {
         this.restartButton.addEventListener("click", () => {
             this.logScreen.style.display = "";
             this.resultScreen.classList.add("hidden");
@@ -133,7 +152,7 @@ export default class GameView {
             this.deckRemaining.textContent = 20;
             this.log.innerHTML = "";
             this.addLog("게임을 시작했습니다.");
-        })
+        });
     }
 
     updatePlayerState(playerState) {
