@@ -44,7 +44,7 @@ export default class GameView {
 
             this.bChoiceButton.querySelector(".choice-label").textContent = card.bDescription;
             this.bChoiceButton.querySelector(".choice-desc").textContent = card.bEffectDescription;
-            this.log.innerHTML += "카드를 뽑았습니다.<br>";
+            this.addLog("카드를 뽑았습니다.");
         });
 
         this.aChoiceButton.addEventListener("click", () => {
@@ -72,7 +72,7 @@ export default class GameView {
                     this.drawButton.style.display = "";
                     this.cardArea.classList.add("hidden");
                     this.giveupButton.classList.remove("hidden");
-                    this.log.innerHTML += "선택지 A를 골랐습니다.<br>";
+                    this.addLog("선택지 A를 골랐습니다.");
                 }
                 else {
                     this.showGameOver(result.result);
@@ -90,7 +90,7 @@ export default class GameView {
 
 
             if (result.starvation) {
-                this.log.innerHTML += "식량이 없어<br>";
+                this.addLog("식량이 없어");
             }
 
             setTimeout(() => {
@@ -100,7 +100,7 @@ export default class GameView {
                     this.drawButton.style.display = "";
                     this.cardArea.classList.add("hidden");
                     this.giveupButton.classList.remove("hidden");
-                    this.log.innerHTML += "선택지 B를 골랐습니다.<br>";
+                    this.addLog("선택지 B를 골랐습니다.");
                 }
                 else {
                     this.showGameOver(result.result);
