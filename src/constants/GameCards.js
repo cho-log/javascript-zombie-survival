@@ -6,8 +6,8 @@ export const GameCards = [
         choice: [
             {
                 name: "A",
-                aDescription: "시체에서 챙길 수 있는 식량을 전부 챙긴다.",
-                aEffectDescription:"식량 +3, 감염 +8",
+                description: "시체에서 챙길 수 있는 식량을 전부 챙긴다.",
+                effectDescription:"식량 +3, 감염 +8",
                 effect: {
                     food: 3,
                     infection: 8,
@@ -15,8 +15,8 @@ export const GameCards = [
             },
             {
                 name: "B",
-                bDescription: "시체 주변 식량만 챙긴다.",
-                bEffectDescription:"식량 +1",
+                description: "시체 주변 식량만 챙긴다.",
+                effectDescription:"식량 +1",
                 effect: {
                     food: 1
                 }
@@ -30,8 +30,8 @@ export const GameCards = [
         choice: [
             {
                 name: "A",
-                aDescription: "부상당한 군인을 치료해준다.",
-                aEffectDescription:"식량 -1, 감염 -20, 치료 횟수 +1",
+                description: "부상당한 군인을 치료해준다.",
+                effectDescription:"식량 -1, 감염 -20, 치료 횟수 +1",
                 effect: {
                     food: -1,
                     infection: -20,
@@ -40,8 +40,8 @@ export const GameCards = [
             },
             {
                 name: "B",
-                bDescription: "부상당한 군인을 모른척하고 식량을 빼앗는다.",
-                bEffectDescription:"체력 -10, 식량 +2",
+                description: "부상당한 군인을 모른척하고 식량을 빼앗는다.",
+                effectDescription:"체력 -10, 식량 +2",
                 effect: {
                     hp: -10,
                     food: 2
@@ -56,8 +56,8 @@ export const GameCards = [
         choice: [
             {
                 name: "A",
-                aDescription: "위험하지만 수술을 받는다.",
-                aEffectDescription:"체력 -25, 감염 -25, 치료 횟수 +1",
+                description: "위험하지만 수술을 받는다.",
+                effectDescription:"체력 -25, 감염 -25, 치료 횟수 +1",
                 effect: {
                     hp: -25,
                     infection: -25,
@@ -66,8 +66,8 @@ export const GameCards = [
             },
             {
                 name: "B",
-                bDescription: "수술을 포기하고 냅둔다.",
-                bEffectDescription:"체력 -5, 감염 +10",
+                description: "수술을 포기하고 냅둔다.",
+                effectDescription:"체력 -5, 감염 +10",
                 effect: {
                     hp: -5,
                     infection: 10
@@ -82,8 +82,8 @@ export const GameCards = [
         choice: [
             {
                 name: "A",
-                aDescription: "군용 차량 행렬을 돕는다",
-                aEffectDescription:"감염 +8, 구조 횟수 +1",
+                description: "군용 차량 행렬을 돕는다",
+                effectDescription:"감염 +8, 구조 횟수 +1",
                 effect: {
                     infection: 8,
                     rescuePoint: 1
@@ -91,8 +91,8 @@ export const GameCards = [
             },
             {
                 name: "B",
-                bDescription: "모른 척 한다.",
-                bEffectDescription:"체력 +5",
+                description: "모른 척 한다.",
+                effectDescription:"체력 +5",
                 effect: {
                     hp: 5
                 }
@@ -106,8 +106,8 @@ export const GameCards = [
         choice: [
             {
                 name: "A",
-                aDescription: "허기를 달래기 위해 마신다.",
-                aEffectDescription:"체력 +5, 감염 +15",
+                description: "허기를 달래기 위해 마신다.",
+                effectDescription:"체력 +5, 감염 +15",
                 effect: {
                     hp: 5,
                     infection: 15
@@ -115,8 +115,8 @@ export const GameCards = [
             },
             {
                 name: "B",
-                bDescription: "허기를 참고 웅덩이를 피해간다.",
-                bEffectDescription:"체력 -10",
+                description: "허기를 참고 웅덩이를 피해간다.",
+                effectDescription:"체력 -10",
                 effect: {
                     hp: -10
                 }
@@ -130,8 +130,8 @@ export const GameCards = [
         choice: [
             {
                 name: "A",
-                aDescription: "구조 트럭에서 사람을 구한다.",
-                aEffectDescription:"체력 -20, 구조 횟수 +1",
+                description: "구조 트럭에서 사람을 구한다.",
+                effectDescription:"체력 -20, 구조 횟수 +1",
                 effect: {
                     hp: -20,
                     rescuePoint: 1
@@ -139,8 +139,8 @@ export const GameCards = [
             },
             {
                 name: "B",
-                bDescription: "모른척하고 구조물품만을 챙긴다.",
-                bEffectDescription:"체력 +10",
+                description: "모른척하고 구조물품만을 챙긴다.",
+                effectDescription:"체력 +10",
                 effect: {
                     hp: 10
                 }

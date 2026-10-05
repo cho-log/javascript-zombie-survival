@@ -13,10 +13,10 @@ export default class GameViewModel {
         return {
             name: this.card.name,
             description: this.card.description,
-            aDescription: this.card.choice[0].aDescription,
-            aEffectDescription: this.card.choice[0].aEffectDescription,
-            bDescription: this.card.choice[1].bDescription,
-            bEffectDescription: this.card.choice[1].bEffectDescription,
+            aDescription: this.card.choice[0].description,
+            aEffectDescription: this.card.choice[0].effectDescription,
+            bDescription: this.card.choice[1].description,
+            bEffectDescription: this.card.choice[1].effectDescription,
             cardCount: getCard.cardCount,
             playerState: this.player.getPlayerState()
         };
