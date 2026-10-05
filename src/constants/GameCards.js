@@ -101,7 +101,7 @@ export const GameCards = [
     },
     {
         name: "오염된 웅덩이",
-        description: "오염된 웅덤이를 발견했다.",
+        description: "오염된 웅덩이를 발견했다.",
         count: 3,
         choice: [
             {
