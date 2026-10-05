@@ -23,36 +23,36 @@ export default class GameViewModel {
     }
 
     selectChoice(index) {
-        const selectedDay = this.player.getPlayerState().day;
+    const selectedDay = this.player.getPlayerState().day;
 
-        this.player.applyEffect(
-            this.card.choice[index].effect
-        );
+    this.player.applyEffect(
+        this.card.choice[index].effect
+    );
 
-        let gameState = this.isendGame();
+    let gameState = this.checkGameStatus();
 
-        if (!gameState.gameStatus) {
-            return {
-                isPlaying: false,
-                result: gameState.result,
-                playerState: this.player.getPlayerState(),
-                starvation: false,
-                selectedDay,
-            };
-        }
-
-        const starvation = this.player.dayEffect();
-
-        gameState = this.isendGame();
-
+    if (!gameState.isPlaying) {
         return {
-            gameStatus: gameState.gameStatus,
+            isPlaying: false,
             result: gameState.result,
             playerState: this.player.getPlayerState(),
-            starvation,
+            isStarvation: false,
             selectedDay,
         };
     }
+
+    const isStarvation = this.player.dayEffect();
+
+    gameState = this.checkGameStatus();
+
+    return {
+        isPlaying: gameState.isPlaying,
+        result: gameState.result,
+        playerState: this.player.getPlayerState(),
+        isStarvation,
+        selectedDay,
+    };
+}
 
     getPlayerState() {
         return this.player.getPlayerState();
@@ -81,5 +81,20 @@ export default class GameViewModel {
             playerState: this.player.getPlayerState()
         };
     }
+
+    checkGameStatus() {
+    const gameOver = this.player.isGameOver();
+
+    if (gameOver.isOver) {
+        return {
+            isPlaying: false,
+            result: gameOver.result
+        };
+    }
+
+    return {
+        isPlaying: true
+    };
+}
 
 }

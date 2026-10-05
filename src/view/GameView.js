@@ -90,7 +90,7 @@ export default class GameView {
             choiceButton.querySelector(".choice-desc").textContent
         );
 
-        if (result.starvation) {
+        if (result.isStarvation) {
             this.addGeneralLog("식량이 없어");
         }
 
