@@ -31,7 +31,7 @@ export const GameCards = [
             {
                 name: "A",
                 aDescription: "부상당한 군인을 치료해준다.",
-                aEffectDescription:"식량 -1, 감염 -20, 구조 횟수 +1",
+                aEffectDescription:"식량 -1, 감염 -20, 치료 횟수 +1",
                 effect: {
                     food: -1,
                     infection: -20,
