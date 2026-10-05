@@ -104,7 +104,7 @@ export default class GameView {
                 this.addGeneralLog(`선택지 ${choiceName}를 골랐습니다.`);
             }
             else {
-                this.showGameOver(result.result);
+                this.showGameOver(result.result,result.selectedDay);
             }
         }, 2000);
     }
@@ -146,7 +146,7 @@ export default class GameView {
         this.state.querySelector("#rescue-points").textContent = playerState.rescuePoint;
     }
 
-    showGameOver(endingMessage) {
+    showGameOver(endingMessage,selectedDay) {
         this.resultScreen.classList.remove("hidden");
         this.restartButton.classList.remove("hidden");
         this.cardArea.classList.add("hidden");
@@ -159,7 +159,7 @@ export default class GameView {
         const playerState = this.gameViewModel.getPlayerState();
 
         this.resultEnding.textContent = endingMessage;
-        this.resultDays.textContent = playerState.day;
+        this.resultDays.textContent = selectedDay;
         this.resultHp.textContent = playerState.hp;
         this.resultFood.textContent = playerState.food;
         this.resultInfection.textContent = playerState.infection;

@@ -23,6 +23,7 @@ export default class GameViewModel {
     }
 
     selectChoice(index) {
+        const selectedDay=this.player.getPlayerState().day;
         this.player.applyEffect(this.card.choice[index].effect);
         this.starvation=this.player.dayEffect();
         const gameState=this.endGame();
@@ -31,7 +32,8 @@ export default class GameViewModel {
             gameStatus: gameState.gameStatus,
             result:gameState.result,
             playerState: this.player.getPlayerState(),
-            starvation:this.starvation
+            starvation:this.starvation,
+            selectedDay:selectedDay
         };
     }
 
