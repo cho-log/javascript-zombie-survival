@@ -62,7 +62,7 @@ export default class GameView {
             );
 
             if (result.starvation) {
-                this.log.innerHTML += "식량이 없어<br>";
+                this.addLog("식량이 없어");
             }
 
             setTimeout(() => {
@@ -132,6 +132,7 @@ export default class GameView {
             this.updatePlayerState(this.gameViewModel.getPlayerState());
             this.deckRemaining.textContent = 20;
             this.log.innerHTML = "";
+            this.addLog("게임을 시작했습니다.");
         })
     }
 
