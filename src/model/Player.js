@@ -29,8 +29,16 @@ export default class Player {
     }
 
     applyEffect(effect) {
+        const allowedKeys = [
+            "hp",
+            "food",
+            "infection",
+            "treatmentCount",
+            "rescuePoint",
+        ];
+
         Object.entries(effect).forEach(([key, value]) => {
-            if (key in this) {
+            if (allowedKeys.includes(key)) {
                 this[key] += value;
             }
         });
@@ -39,6 +47,9 @@ export default class Player {
         }
         if (this.hp < 0) {
             this.hp = 0;
+        }
+        if (this.food < 0) {
+            this.food = 0;
         }
     }
 
