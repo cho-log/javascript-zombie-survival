@@ -108,7 +108,7 @@ export default class Player {
                 message: "치료 성공"
             }
         }
-        if (this.rescuePoint + this.day > 10) {
+        if (this.rescuePoint>=3 && this.day > 10) {
             return {
                 status: "success",
                 message: "구조 성공"
