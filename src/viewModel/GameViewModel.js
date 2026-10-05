@@ -23,17 +23,17 @@ export default class GameViewModel {
     }
 
     selectChoice(index) {
-        const selectedDay=this.player.getPlayerState().day;
+        const selectedDay = this.player.getPlayerState().day;
         this.player.applyEffect(this.card.choice[index].effect);
-        this.starvation=this.player.dayEffect();
-        const gameState=this.endGame();
+        this.starvation = this.player.dayEffect();
+        const gameState = this.endGame();
 
         return {
             gameStatus: gameState.gameStatus,
-            result:gameState.result,
+            result: gameState.result,
             playerState: this.player.getPlayerState(),
-            starvation:this.starvation,
-            selectedDay:selectedDay
+            starvation: this.starvation,
+            selectedDay: selectedDay
         };
     }
 
@@ -59,7 +59,7 @@ export default class GameViewModel {
 
     initGame() {
         this.player.initGame();
-        this.deck.initCards(); 
+        this.deck.initCards();
         return {
             playerState: this.player.getPlayerState()
         };

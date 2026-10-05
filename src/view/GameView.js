@@ -57,7 +57,7 @@ export default class GameView {
     }
 
     bindAChoiceButton() {
-        this.aChoiceButton.addEventListener("click",()=>{
+        this.aChoiceButton.addEventListener("click", () => {
             this.handleChoice(
                 0,
                 "A",
@@ -67,7 +67,7 @@ export default class GameView {
     }
 
     bindBChoiceButton() {
-        this.bChoiceButton.addEventListener("click",()=>{
+        this.bChoiceButton.addEventListener("click", () => {
             this.handleChoice(
                 1,
                 "B",
@@ -104,7 +104,7 @@ export default class GameView {
                 this.addGeneralLog(`선택지 ${choiceName}를 골랐습니다.`);
             }
             else {
-                this.showGameOver(result.result,result.selectedDay);
+                this.showGameOver(result.result, result.selectedDay);
             }
         }, 2000);
     }
@@ -146,7 +146,7 @@ export default class GameView {
         this.state.querySelector("#rescue-points").textContent = playerState.rescuePoint;
     }
 
-    showGameOver(endingMessage,selectedDay) {
+    showGameOver(endingMessage, selectedDay) {
         this.resultScreen.classList.remove("hidden");
         this.restartButton.classList.remove("hidden");
         this.cardArea.classList.add("hidden");
