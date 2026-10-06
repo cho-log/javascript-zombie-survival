@@ -35,9 +35,8 @@ export default class Game {
   }
 
   selectChoice(choice) {
-    if (choice === 'A')
-      return this.#nowCard.choiceA; //A 선택시
-    else return this.#nowCard.choiceB; //B 선택시
+    if (choice === 'A') return this.#nowCard.choiceA; //A 선택시
+    return this.#nowCard.choiceB; //B 선택시
   }
 
   applyEffect(effect) {
@@ -64,7 +63,7 @@ export default class Game {
     this.#hasGivenUp = true;
   }
 
-  getIsStarving() {
+  isStarving() {
     return this.#isStarving;
   }
 

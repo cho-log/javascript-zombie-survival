@@ -39,7 +39,7 @@ export default class GameController {
   }
   finishChoice(choice) {
     this.#game.processDay(choice);
-    if (this.#game.getIsStarving()) this.#gameView.addLog('식량이 없어'); //기아가 발생했을 때
+    if (this.#game.isStarving()) this.#gameView.addLog('식량이 없어'); //기아가 발생했을 때
     this.#gameView.setLoading(false);
     this.#gameView.renderStats(this.#game.getState()); //선택 결과 업데이트
 
@@ -48,7 +48,7 @@ export default class GameController {
       return;
     }
     //게임 진행
-    this.#gameView.displayDrawScreen(true); //카트 영역 감추기
+    this.#gameView.displayDrawScreen(true);
   }
 
   handleGiveUp() {
