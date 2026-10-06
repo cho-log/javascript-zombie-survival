@@ -76,6 +76,7 @@ export default class Game {
     if (SURVIVE_DAY_THRESHOLD < this.#day) return 'survive'; //15일초과
     return null;
   }
+
   getState() {
     //화면렌더용
     const playerState = this.#player.getState();
@@ -90,6 +91,7 @@ export default class Game {
       remainingCardCount: this.#cardDeck.getRemainingCardCount(),
     };
   }
+
   getResult() {
     //결과화면용
     const playerState = this.#player.getState();

@@ -46,12 +46,14 @@ export default class GameView {
     this.initializeCardElements();
     this.initializeResultElements();
   }
+
   initializeScreenElements() {
     this.#gameScreen = document.getElementById('game-screen');
     this.#drawArea = document.getElementById('draw-area');
     this.#cardArea = document.getElementById('card-area');
     this.#resultScreen = document.getElementById('result-screen');
   }
+
   initializeStatElements() {
     this.#dayElement = document.getElementById('day');
     this.#heartElement = document.getElementById('hp');
@@ -60,11 +62,13 @@ export default class GameView {
     this.#healingCountElement = document.getElementById('heal-attempts');
     this.#rescuePointElement = document.getElementById('rescue-points');
   }
+
   initializeStatusElements() {
     this.#remainingCardCountElement = document.getElementById('deck-remaining');
     this.#loadingElement = document.getElementById('loading');
     this.#logElement = document.getElementById('log');
   }
+
   initializeButtonElements() {
     this.#drawButton = document.getElementById('btn-draw');
     this.#choiceAButton = document.getElementById('btn-choice-a');
@@ -72,6 +76,7 @@ export default class GameView {
     this.#giveUpButton = document.getElementById('btn-giveup');
     this.#restartButton = document.getElementById('btn-restart');
   }
+
   initializeCardElements() {
     this.#cardNameElement = document.getElementById('card-name');
     this.#cardDescriptionElement = document.getElementById('card-description');
@@ -80,6 +85,7 @@ export default class GameView {
     this.#choiceBLabelElement = this.#choiceBButton.querySelector('.choice-label');
     this.#choiceBDescriptionElement = this.#choiceBButton.querySelector('.choice-desc');
   }
+
   initializeResultElements() {
     this.#resultEndingElement = document.getElementById('result-ending');
     this.#resultDaysElement = document.getElementById('result-days');
@@ -87,17 +93,21 @@ export default class GameView {
     this.#resultFoodElement = document.getElementById('result-food');
     this.#resultInfectionRateElement = document.getElementById('result-infection');
   }
+
   //버튼 바인더
   bindDraw(handler) {
     this.#drawButton.addEventListener('click', handler);
   }
+
   bindChoice(handler) {
     this.#choiceAButton.addEventListener('click', () => handler('A')); //이벤트 등록 순간 실행 방지
     this.#choiceBButton.addEventListener('click', () => handler('B'));
   }
+
   bindGiveUp(handler) {
     this.#giveUpButton.addEventListener('click', handler);
   }
+
   bindRestart(handler) {
     this.#restartButton.addEventListener('click', handler);
   }
@@ -130,6 +140,7 @@ export default class GameView {
       screen.classList.add('hidden');
     }
   }
+
   displayDrawScreen(isDisplay) {
     this.displayScreen(this.#drawArea, isDisplay);
     this.displayScreen(this.#cardArea, !isDisplay);
@@ -141,12 +152,14 @@ export default class GameView {
     this.#choiceAButton.disabled = isLoading; //선택버튼 활성,비활성
     this.#choiceBButton.disabled = isLoading;
   }
+
   addLog(message) {
     const logMessage = document.createElement('p');
 
     logMessage.append(message);
     this.#logElement.append(logMessage); //로그 메세지 추가
   }
+
   clearLog() {
     this.#logElement.textContent = ''; //로그 메세지 초기화
   }

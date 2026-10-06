@@ -25,15 +25,19 @@ export default class Player {
   changeHeart(amount) {
     this.#heart = Math.max(0, this.#heart + amount); //최솟값 0
   }
+
   changeFood(amount) {
     this.#food = Math.max(0, this.#food + amount); //최솟값 0
   }
+
   changeInfectionRate(amount) {
     this.#infectionRate = Math.max(0, this.#infectionRate + amount); //최솟값 0
   }
+
   addHealingCount(healingCount) {
     this.#healingCount += healingCount;
   }
+
   addRescuePoint(rescuePoint) {
     this.#rescuePoint += rescuePoint;
   }
@@ -41,12 +45,15 @@ export default class Player {
   isDead() {
     return this.#heart <= 0;
   }
+
   isZombie() {
     return INFECTION_RATE_THRESHOLD <= this.#infectionRate;
   }
+
   hasHealed() {
     return HEALING_COUNT_THRESHOLD <= this.#healingCount;
   }
+
   hasEnoughRescuePoints() {
     return RESCUE_POINT_THRESHOLD <= this.#rescuePoint;
   }

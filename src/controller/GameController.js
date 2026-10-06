@@ -37,6 +37,7 @@ export default class GameController {
 
     setTimeout(() => this.finishChoice(choice), 2000);
   }
+
   finishChoice(choice) {
     this.#game.processDay(choice);
     if (this.#game.isStarving()) this.#gameView.addLog('식량이 없어'); //기아가 발생했을 때
