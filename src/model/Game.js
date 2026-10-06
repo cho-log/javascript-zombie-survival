@@ -1,9 +1,9 @@
 import CardDeck from './CardDeck.js';
 import Player from './Player.js';
 
-const DAILY_FOOD_CONSUMPTION = 1;
+const DAILY_FOOD_CONSUMPTION = -1;
 const DAILY_INFECTION_INCREASE = 3;
-const DAMAGE_WHEN_STARVING = 10;
+const DAMAGE_WHEN_STARVING = -10;
 
 export default class Game {
   #cardDeck;
@@ -31,38 +31,28 @@ export default class Game {
     this.#nowCard = this.#cardDeck.drawCard(); //뽑은 카드 저장
     return this.#nowCard;
   }
+
   selectChoice(choice) {
     if (choice === 'A')
       return this.#nowCard.choiceA; //A 선택시
     else return this.#nowCard.choiceB; //B 선택시
   }
+
   applyEffect(effect) {
     //값이 없으면 0 입력
-    this.applyHeartEffect(effect.heart ?? 0);
-    this.applyFoodEffect(effect.food ?? 0);
-    this.applyInfectionRateEffect(effect.infectionRate ?? 0);
+    this.#player.changeHeart(effect.heart ?? 0);
+    this.#player.changeFood(effect.food ?? 0);
+    this.#player.changeInfectionRate(effect.infectionRate ?? 0);
     this.#player.addHealingCount(effect.healingCount ?? 0);
     this.#player.addRescuePoint(effect.rescuePoint ?? 0);
-  }
-  applyHeartEffect(heartChange) {
-    if (0 < heartChange) this.#player.heal(heartChange);
-    else if (heartChange < 0) this.#player.takeDamage(-heartChange);
-  }
-  applyFoodEffect(foodChange) {
-    if (0 < foodChange) this.#player.addFood(foodChange);
-    else if (foodChange < 0) this.#player.eatFood(-foodChange);
-  }
-  applyInfectionRateEffect(infectionRateChange) {
-    if (0 < infectionRateChange) this.#player.increaseInfectionRate(infectionRateChange);
-    else if (infectionRateChange < 0) this.#player.decreaseInfectionRate(-infectionRateChange);
   }
 
   processDay(choice) {
     this.applyEffect(this.selectChoice(choice).effect); //카드 효과가 적용된다
     this.#isStarving = this.#player.getState().food === 0; //현재 식량이 0인지 확인한다 (기아 판정)
-    this.#player.eatFood(DAILY_FOOD_CONSUMPTION); //식량 1이 소비된다
-    this.#player.increaseInfectionRate(DAILY_INFECTION_INCREASE); //감염도가 3 증가한다
-    if (this.#isStarving) this.#player.takeDamage(DAMAGE_WHEN_STARVING); //2번에서 식량이 0이었다면, 체력이 10 추가 감소한다
+    this.#player.changeFood(DAILY_FOOD_CONSUMPTION); //식량 1이 소비된다
+    this.#player.changeInfectionRate(DAILY_INFECTION_INCREASE); //감염도가 3 증가한다
+    if (this.#isStarving) this.#player.changeHeart(DAMAGE_WHEN_STARVING); //2번에서 식량이 0이었다면, 체력이 10 추가 감소한다
 
     this.#nowCard = null; //카드 비우기
     this.#day += 1; //날짜 증가
