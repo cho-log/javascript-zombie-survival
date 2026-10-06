@@ -106,7 +106,7 @@ export default class Game {
     const playerState = this.#player.getState();
 
     return {
-      day: this.#day - 1,
+      day: this.#day - 1, //엔딩이 출력될땐, 이미 processDay에서 하루를 보낸걸로 처리되기에 1을 빼서 반환합니다.
       heart: playerState.heart,
       food: playerState.food,
       infectionRate: playerState.infectionRate,
