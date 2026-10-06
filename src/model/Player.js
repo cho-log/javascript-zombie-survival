@@ -3,6 +3,9 @@ const INITIAL_FOOD = 3;
 const INITIAL_INFECTION_RATE = 10;
 const INITIAL_HEALING_COUNT = 0;
 const INITIAL_RESCUE_POINT = 0;
+const INFECTION_RATE_THRESHOLD = 100;
+const HEALING_COUNT_THRESHOLD = 5;
+const RESCUE_POINT_THRESHOLD = 3;
 
 export default class Player {
   #heart;
@@ -33,6 +36,19 @@ export default class Player {
   }
   addRescuePoint(rescuePoint) {
     this.#rescuePoint += rescuePoint;
+  }
+
+  isDead() {
+    return this.#heart <= 0;
+  }
+  isZombie() {
+    return INFECTION_RATE_THRESHOLD <= this.#infectionRate;
+  }
+  hasHealed() {
+    return HEALING_COUNT_THRESHOLD <= this.#healingCount;
+  }
+  hasEnoughRescuePoints() {
+    return RESCUE_POINT_THRESHOLD <= this.#rescuePoint;
   }
 
   getState() {

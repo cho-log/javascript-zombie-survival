@@ -4,6 +4,8 @@ import Player from './Player.js';
 const DAILY_FOOD_CONSUMPTION = -1;
 const DAILY_INFECTION_INCREASE = 3;
 const DAMAGE_WHEN_STARVING = -10;
+const RESCUE_DAY_THRESHOLD = 10;
+const SURVIVE_DAY_THRESHOLD = 15;
 
 export default class Game {
   #cardDeck;
@@ -67,14 +69,12 @@ export default class Game {
   }
 
   getEnding() {
-    const playerState = this.#player.getState();
-
     if (this.#hasGivenUp) return 'hasGivenUp'; //포기
-    if (playerState.heart <= 0) return 'dead'; //사망
-    if (100 <= playerState.infectionRate) return 'zombie'; //좀비화
-    if (5 <= playerState.healingCount) return 'treatment'; //치료5회
-    if (3 <= playerState.rescuePoint && 10 < this.#day) return 'rescue'; //구조포인트3회 + 10일초과
-    if (15 < this.#day) return 'survive'; //15일초과
+    if (this.#player.isDead()) return 'dead'; //사망
+    if (this.#player.isZombie()) return 'zombie'; //좀비화
+    if (this.#player.hasHealed()) return 'treatment'; //치료5회
+    if (this.#player.hasEnoughRescuePoints() && RESCUE_DAY_THRESHOLD < this.#day) return 'rescue'; //구조포인트3회 + 10일초과
+    if (SURVIVE_DAY_THRESHOLD < this.#day) return 'survive'; //15일초과
     return null;
   }
   getState() {
